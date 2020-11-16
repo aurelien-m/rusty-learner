@@ -28,7 +28,7 @@ fn main() {
     let training_size = 12000;
 
     let mut model = SequentialConfig::default();
-    model.add_layer(LayerConfig::new("reshape", ReshapeConfig::of_shape(&[batch_size, 1, pixel_dim, pixel_dim]),));
+    model.add_layer(LayerConfig::new("reshape", ReshapeConfig::of_shape(&[1, pixel_dim, pixel_dim]),));
     model.add_layer(LayerConfig::new("conv", ConvolutionConfig { num_output: 32, filter_shape: vec![3], padding: vec![0], stride: vec![1] }));
     model.add_layer(LayerConfig::new("pooling", PoolingConfig { mode: PoolingMode::Max, filter_shape: vec![2], stride: vec![2], padding: vec![0] }));
     model.add_layer(LayerConfig::new("linear1", LinearConfig { output_size: 500 }));
